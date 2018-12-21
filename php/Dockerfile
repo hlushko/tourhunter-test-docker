@@ -1,4 +1,4 @@
-FROM php:7.2-fpm
+FROM php:7.3-fpm
 
 RUN apt-get update && apt-get install -y \
         git \
@@ -21,22 +21,6 @@ RUN apt-get update \
         pdo_mysql \
         gd \
     && rm -rf /var/lib/apt/lists/*
-
-#RUN apt-get update && apt-get install -y \
-#        libmcrypt-dev \
-#    && docker-php-ext-install -j$(nproc) \
-#        iconv \
-#        mcrypt \
-#    && docker-php-ext-install -j$(nproc) \
-#        bcmath \
-#        sockets \
-#    && rm -rf /var/lib/apt/lists/*
-#
-#RUN apt-get update && apt-get install -y \
-#        libxml2-dev --no-install-recommends \
-#    && docker-php-ext-install soap \
-#    && docker-php-ext-enable opcache \
-#    && rm -rf /var/lib/apt/lists/*
 
 # intl installation block start
 ARG ICU_ARCHIVE
