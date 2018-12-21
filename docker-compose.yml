@@ -1,0 +1,39 @@
+version: '2'
+
+services:
+    tht-sql:
+        build: ./sql
+        container_name: tht-sql
+        volumes:
+            - ./sql/data:/var/lib/mysql
+        environment:
+            MYSQL_ROOT_PASSWORD: tht-root7
+    tht-nginx:
+        build: ./nginx
+        container_name: tht-nginx
+        ports:
+            - 80
+        volumes_from:
+            - tht-php
+        depends_on:
+            - tht-php
+    tht-php:
+        build:
+            context: ./php
+            args:
+                USER_ID: ${UID}
+                GROUP_ID: ${GID}
+                ICU_ARCHIVE: ${ICU_ARCHIVE}
+        container_name: tht-php
+        environment:
+            - REPOSITORY=${CODE_REPOSITORY}
+        volumes:
+            - ${SSH_KEY}:/root/.ssh/id_rsa:ro
+            - ~/.gitconfig:/root/.gitconfig:ro
+            - ~/.composer:/root/.composer
+            - /var/www
+
+networks:
+    default:
+        external:
+            name: tht-network

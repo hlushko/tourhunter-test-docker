@@ -1,0 +1,19 @@
+version: '2'
+
+services:
+    tht-nginx:
+        environment:
+            - VIRTUAL_HOST=tht.lh
+    tht-php:
+        volumes:
+            - tht-unison-sync:/var/www:nocopy
+    nginx-proxy:
+        image: jwilder/nginx-proxy
+        ports:
+          - "82:80"
+        volumes:
+          - /var/run/docker.sock:/tmp/docker.sock:ro
+
+volumes:
+    tht-unison-sync:
+        external: true

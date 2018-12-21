@@ -1,0 +1,7 @@
+.env
+.idea/
+.docker-sync/
+code/
+!code/.gitkeep
+sql/data
+php/config.php
