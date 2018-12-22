@@ -2,12 +2,16 @@ version: '2'
 
 services:
     tht-sql:
-        build: ./sql
+        build:
+            context: ./sql
+            args:
+                USER_ID: ${UID}
+                GROUP_ID: ${GID}
         container_name: tht-sql
         volumes:
             - ./sql/data:/var/lib/mysql
         environment:
-            MYSQL_ROOT_PASSWORD: tht-root7
+            MYSQL_ROOT_PASSWORD: ${SQL_ROOT_PASS}
     tht-nginx:
         build: ./nginx
         container_name: tht-nginx
