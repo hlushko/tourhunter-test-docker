@@ -12,4 +12,5 @@ syncs:
         sync_excludes_type: 'Name'
         sync_excludes:
             - 'app/.idea'
+            - 'app/runtime'
             - 'app/vendor'

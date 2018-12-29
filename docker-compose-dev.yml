@@ -3,7 +3,7 @@ version: '2'
 services:
     tht-nginx:
         environment:
-            - VIRTUAL_HOST=tht.lh
+            - VIRTUAL_HOST=${HTTP_HOST}
     tht-php:
         volumes:
             - tht-unison-sync:/var/www:nocopy

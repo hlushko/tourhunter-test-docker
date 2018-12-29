@@ -31,6 +31,15 @@ services:
         container_name: tht-php
         environment:
             - REPOSITORY=${CODE_REPOSITORY}
+            - APP_HOST=${HTTP_HOST}
+            - DB_HOST=tht-sql
+            - DB_NAME=tht
+            - DB_USER=root
+            - DB_PASS=${SQL_ROOT_PASS}
+            - TEST_DB_HOST=tht-sql
+            - TEST_DB_NAME=tht_test
+            - TEST_DB_USER=root
+            - TEST_DB_PASS=${SQL_ROOT_PASS}
         volumes:
             - ${SSH_KEY}:/root/.ssh/id_rsa:ro
             - ~/.gitconfig:/root/.gitconfig:ro
